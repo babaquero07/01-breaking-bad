@@ -1,9 +1,24 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from 'vue'
+const counter = ref<number>(0)
+
+// export default defineComponent({
+//   setup() {
+//     const increase = () => {
+//       counter.value++
+//     }
+//     return {
+//       counter,
+//       increase
+//     }
+//   }
+// })
+</script>
 
 <template>
   <div class="wrapper">
-    <h1>Hola</h1>
-    <p>mundo</p>
+    <h1>Counter: {{ counter }}</h1>
+    <button @click="counter++">+1</button>
   </div>
 </template>
 
