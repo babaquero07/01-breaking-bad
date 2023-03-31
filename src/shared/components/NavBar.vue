@@ -1,20 +1,20 @@
 <script setup lang="ts">
+import type { RouterLink } from "@/router/link-routes";
 
+// // Con interfaces/clases
 interface Props {
-    title?: string;
+    title: string;
+    links: RouterLink[];
 }
-
-const props = defineProps<Props>()
-
+const props = defineProps<Props>();
 </script>
 
 <template>
     <nav>
-        <img src="@/assets/logo.svg" alt="Vue Logo" height="25" width="25">
-        <span>{{ props.title || 'Algo' }}</span>
+        <img src="@/assets/logo.svg" alt="Vue Logo" width="25" height="25" />
+        <span>{{ props.title || '' }}</span>
 
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <router-link v-for="route in links" :key="route.name" :to="route.path">{{ route.title }}</router-link>
     </nav>
 </template>
 
