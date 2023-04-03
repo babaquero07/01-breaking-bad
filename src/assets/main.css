@@ -31,3 +31,11 @@ a,
     padding: 0 2rem;
   }
 }
+
+.router-link-active {
+  /* color: grey; */
+}
+
+.router-link-exact-active {
+  text-decoration: underline;
+}
