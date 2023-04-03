@@ -2,21 +2,16 @@
 import { ref } from 'vue';
 import breakingBadApi from '@/api/breakingBadApi';
 import type { CharacterQuote } from '@/characters/interfaces/character';
+import { useQuotes } from '@/characters/composables/useQuotes';
 
-const quotes = ref<CharacterQuote[]>([])
-
-breakingBadApi.get<CharacterQuote[]>('/5')
-    .then(({ data }) => {
-        console.log(data);
-        quotes.value = data;
-    })
-
-    // const { data } = await breakingBadApi.get<CharacterQuote[]>('/5');
-    // const quotes = ref<CharacterQuote[]>(data)
+// const { data } = await breakingBadApi.get<CharacterQuote[]>('/5');
+// const quotes = ref<CharacterQuote[]>(data)
+const { isLoading, quotes } = useQuotes();
 
 </script>
 
 <template>
+    <h1 v-if="isLoading">Loading...</h1>
     <ul>
         <li v-for="quote of quotes" :key="quote.author">
             <p>{{ quote.quote }}</p>
