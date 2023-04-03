@@ -4,15 +4,19 @@ import type { RouterLink } from "@/router/link-routes";
 // // Con interfaces/clases
 interface Props {
     title: string;
-    links: RouterLink[];
+    links?: RouterLink[];
+    showIcon?: boolean;
 }
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+    showIcon: true,
+    links: () => [],
+});
 </script>
 
 <template>
     <nav>
-        <img src="@/assets/logo.svg" alt="Vue Logo" width="25" height="25" />
-        <span>{{ props.title || '' }}</span>
+        <img v-if="props.showIcon" src="@/assets/logo.svg" alt="Vue Logo" width="25" height="25" />
+        <span v-if="props.title">{{ props.title }} </span>
 
         <router-link v-for="route in links" :key="route.name" :to="route.path">{{ route.title }}</router-link>
     </nav>
