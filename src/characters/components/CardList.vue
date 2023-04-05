@@ -17,7 +17,15 @@ const getQuotesSlow = async (): Promise<CharacterQuote[]> => {
   return data
 }
 //! 3 TanStack Query
-const { isLoading, isError, data: quotes, error } = useQuery(['quotes'], getQuotesSlow)
+const {
+  isLoading,
+  isError,
+  data: quotes,
+  error
+} = useQuery(['quotes'], getQuotesSlow, {
+  cacheTime: 1000 * 6,
+  refetchOnReconnect: 'always'
+})
 </script>
 
 <template>
